@@ -26,3 +26,20 @@
   ```
 
   输入时要注意字符与数字之间的转换。
+
++ a1103  DFS + 剪枝
+
++ a1104   
+
+   !!! double * int * int 与 int * int * double 可能会有区别。int * int * double时  int * int 可能溢出。
+
++ a1105
+
++ a1106  树的遍历
+
+  普通的树的表示
+  ```
+  vector<int> child[maxn]  // maxn为最大结点数， 如果有点权可以用结构体
+
+  ```
++ a1107 并查集
