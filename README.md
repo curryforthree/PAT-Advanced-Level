@@ -159,8 +159,64 @@
 
 + a1123 AVL树
 
+  由于要对每个结点获取平衡因子，需要在树的结构体中加入一个变量height，表示以当前结点为根结点的子树的高度。
+
+  ```
+  struct node {
+    int v, height;          // v是权值，height是当前子树高度
+    node* l, r;             
+  }
+  ```
+  此时新建一个结点，其height要设为1；
+
+  可以通过下面的一个函数来获得结点root所在子树的当前高度
+  ```
+  int getHeight(node* root){
+    if(root == NULL) return 0;
+    return root->height;
+  }
+  ```
+
+  计算平衡因子
+  ```
+  int getBalanceFactor(node* root){
+    return getHeight(root->l) - getHeight(root->r);
+  }
+  ```
+
+   在插入结点后要更新树的高度
+   ```
+   void updateHeight(node* root){
+       root->height = max(getHeight(root->l), getHeight(root->r)) + 1;
+   }
+   ```
+   左旋
+   ```
+   void L(node* &root){             // 返回值void，由于树形要改变要加&
+     node* temp = root->r;    
+     root->r = temp->l;
+     temp->l = root;
+     updateHeight(root);        // 更新两个变化的结点高度
+     updateHeight(temp);        //这两句不能忘 先更新下面的结点（root）
+     root = temp;
+   }
+   ```
+   右旋同理
+
+   关于判断是否是完全二叉树，有以下几个方法
+
+   1.总结点数为n，从第1个结点 到第n / 2 - 1个结点都应该有左右孩子， 第 n / 2个结点应该有左孩子。（注意第n / 2个判断）
+
+   2.每次入队count++；如果左子树或者右子树为空，则判断入队结点的总数是否是整个树的结点。
+
 + a1124 map
 
   如果用户中过奖，mapp[id] = 1
 
   设置一个变量s，表示下次应该去判断哪个位置是否中奖，外层循环变量i 若等于s，就看mapp[id] == 0 若满足就输出 ，s += n；若不满足则不输出 s += 1；
+
++ a1125  贪心
+
+  每次长度都要减半， 最开始的肯定减半的最多， 所以开始的越短越好
+
++ a1126
