@@ -219,4 +219,17 @@
 
   每次长度都要减半， 最开始的肯定减半的最多， 所以开始的越短越好
 
-+ a1126
++ a1126 图论
+
+  题目的叙述是这样的
+
+  It has been proven that connected graphs with all vertices...
+
+  所以一定要判断图是联通图！！！DFS遍历，每遍历一个结点Count++，看最终结果是不是总的结点数。
+
+  对于结点的度。⽤邻接表存储图，判断每个结点的度【也就是每个结点i的v[i].size()】是多少,即可得到最终结果
+
+  ```
+  vector<vector<int>> v;
+  v.resize(n + 1);      //结点从1~n
+  ```
