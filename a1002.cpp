@@ -1,53 +1,29 @@
 #include <iostream>
-#include <algorithm>
+#include <vector>
 using namespace std;
-
-struct pol{
-    int exp;
-    double co;
-};
-bool cmp(pol a, pol b){
-    return a.exp > b.exp;
-}
-pol a[20];
-//pol b[20];
+const int maxn = 1010;
 int main() {
-    int num1, num2;
-    int e;
-    double c;
-    cin >> num1;
-    for (int i = 0; i < num1; ++i) {
-        cin >> a[i].exp >> a[i].co;
+    vector<double> v(maxn);
+    int k, a, cnt = 0;
+    double b;
+    cin >> k;
+    for (int i = 0; i < k; ++i) {
+        cin >> a >> b;
+        v[a] += b;
     }
-    cin >> num2;
-    for (int i = 0; i < num2; ++i) {
-        cin >> e >> c;
-        for (int j = 0; j < 20; ++j) {
-            if (a[j].exp > e){
-                continue;
-            } else if(a[j].exp == e){
-                a[j].co += c;
-                break;
-            } else if(a[j].exp < e){
-                a[num1].exp = e;
-                a[num1++].co = c;
-                break;
-            }
+    cin >> k;
+    for (int i = 0; i < k; ++i) {
+        cin >> a >> b;
+        v[a] += b;
+    }
+    for (int i = 0; i < v.size(); ++i)
+        if(v[i] != 0.0)
+            cnt++;
+    printf("%d", cnt);
+    for (int i = v.size() - 1; i >= 0; --i) {
+        if(v[i] != 0.0){
+            printf(" %d %.1f", i, v[i]);
         }
     }
-    sort(a, a + 20, cmp);
-    int count = 0;
-    for (int i = 0; i < 20; ++i) {
-        if(a[i].co){
-            count++;
-        }
-    }
-    printf("%d", count);
-    for (int i = 0; i < 20; ++i) {
-        if (a[i].co){
-            printf(" %d %.1f", a[i].exp, a[i].co);
-        }
-    }
-
     return 0;
 }
