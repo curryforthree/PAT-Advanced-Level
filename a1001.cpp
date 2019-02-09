@@ -1,32 +1,21 @@
-#include <cstdio>
 #include <iostream>
-#include <algorithm>
 using namespace std;
-int res[10];
 
-
-int main(){
-    int a, b;
+int main() {
+    int a, b, c;
     cin >> a >> b;
-    int sum, count = 0;
-    sum = a + b;
-    if(sum < 0){
+    c = a + b;
+    string ans;
+    ans = to_string(c);
+    if(ans[0] == '-'){
         printf("-");
-        sum = -sum;
+        ans = ans.substr(1);
     }
-    if(!sum){
-        printf("0");
-        return 0;
-    }
-    while(sum){
-        res[count++] = sum % 10;
-        sum /= 10;
-    }
-    for (int i = 0; i < count; ++i) {
-        if((count - i) % 3 == 0 && count > 3 && i != 0){
+    for (int i = 0; i < ans.size(); ++i) {
+        printf("%c", ans[i]);
+        if((ans.size() - i - 1) % 3 == 0 && i != ans.size() - 1){
             printf(",");
         }
-        printf("%d", res[count - i - 1]);
     }
     return 0;
 }
